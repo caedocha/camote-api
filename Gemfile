@@ -7,6 +7,7 @@ end
 
 
 gem 'rails', '~> 5.0.1'
+gem 'active_model_serializers'
 gem 'puma', '~> 3.0'
 gem 'mysql2'
 #
