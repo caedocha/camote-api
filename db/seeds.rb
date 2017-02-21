@@ -66,8 +66,12 @@ quantities = [
 ]
 
 quantities.each do |(amount, unit_name, ingredient_name)|
-  quantity = Quantity.create!(amount: amount, recipe: recipe)
-  quantity.units << Unit.where(name: unit_name)
-  quantity.ingredients << Ingredient.where(name: ingredient_name)
-  quantity.save
+  Quantity.create(
+    {
+      amount: amount,
+      recipe: recipe,
+      unit: Unit.where(name: unit_name).first,
+      ingredient: Ingredient.where(name: ingredient_name).first
+    }
+  )
 end

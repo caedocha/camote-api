@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214192437) do
+ActiveRecord::Schema.define(version: 20170214190349) do
 
   create_table "ingredients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -18,25 +18,13 @@ ActiveRecord::Schema.define(version: 20170214192437) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ingredients_quantities", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "quantity_id",   null: false
-    t.integer "ingredient_id", null: false
-    t.index ["ingredient_id", "quantity_id"], name: "index_ingredients_quantities_on_ingredient_id_and_quantity_id", using: :btree
-    t.index ["quantity_id", "ingredient_id"], name: "index_ingredients_quantities_on_quantity_id_and_ingredient_id", using: :btree
-  end
-
   create_table "quantities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.float    "amount",     limit: 24
+    t.float    "amount",        limit: 24
     t.integer  "recipe_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  create_table "quantities_units", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "quantity_id", null: false
-    t.integer "unit_id",     null: false
-    t.index ["quantity_id", "unit_id"], name: "index_quantities_units_on_quantity_id_and_unit_id", using: :btree
-    t.index ["unit_id", "quantity_id"], name: "index_quantities_units_on_unit_id_and_quantity_id", using: :btree
+    t.integer  "unit_id"
+    t.integer  "ingredient_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "recipes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
